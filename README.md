@@ -4,12 +4,12 @@ An AI-powered incident triage assistant for DevOps & SRE teams. Paste logs → i
 
 ## Features
 
-- 🔍 **Intelligent Log Analysis**: Automatically analyze and parse logs to identify issues
-- 🎯 **Root Cause Identification**: AI-powered root cause analysis for incidents
-- 🛡️ **Safe Remediation Steps**: Get actionable, safe remediation recommendations
-- 📤 **Export Updates**: Export findings and updates for documentation
-- 🔒 **Privacy-First**: Runs entirely on your own infrastructure with no external AI APIs
-- 🚫 **No Data Leaks**: Your sensitive logs and data never leave your environment
+ **Intelligent Log Analysis**: Automatically analyze and parse logs to identify issues
+**Root Cause Identification**: AI-powered root cause analysis for incidents
+**Safe Remediation Steps**: Get actionable, safe remediation recommendations
+**Export Updates**: Export findings and updates for documentation
+**Privacy-First**: Runs entirely on your own infrastructure with no external AI APIs
+**No Data Leaks**: Your sensitive logs and data never leave your environment
 
 ## Tech Stack
 
