@@ -1,35 +1,39 @@
 import httpx
 import json
+import os
 
-LLAMA_SERVER_URL = "http://localhost:8080/completion"
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 async def stream_llm_response(prompt: str):
+    headers = {
+        "Authorization": f"Bearer {os.environ.get('GROQ_API_KEY')}",
+        "Content-Type": "application/json",
+    }
     payload = {
-        "prompt": prompt,
-        "n_predict": 768,
-        "temperature": 0.2,
-        "repeat_penalty": 1.15,
-        "stop": ["</s>", "User logs", "User:", "\n\nUser", "CONCLUSION:", "SUMMARY:"],
+        "model": "llama3-8b-8192",
+        "messages": [{"role": "user", "content": prompt}],
         "stream": True,
+        "temperature": 0.2,
+        "max_tokens": 768,
+        "stop": ["User logs", "User:", "\n\nUser"],
     }
 
-    async with httpx.AsyncClient(timeout=None) as client:
+    async with httpx.AsyncClient(timeout=60) as client:
         async with client.stream(
             "POST",
-            LLAMA_SERVER_URL,
+            GROQ_API_URL,
+            headers=headers,
             json=payload,
-            headers={"Content-Type": "application/json"},
         ) as response:
             async for line in response.aiter_lines():
-                if not line:
+                if not line or line == "data: [DONE]":
                     continue
-                # llama.cpp streams SSE: "data: {...}"
                 if line.startswith("data: "):
                     line = line[len("data: "):]
                 try:
                     data = json.loads(line)
-                    token = data.get("content", "")
+                    token = data["choices"][0]["delta"].get("content", "")
                     if token:
                         yield token
-                except json.JSONDecodeError:
+                except (json.JSONDecodeError, KeyError):
                     continue
