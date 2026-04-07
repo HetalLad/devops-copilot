@@ -4,6 +4,8 @@ from sqlmodel import SQLModel, create_engine, Session
 # ✅ Always create DB in backend/ (absolute path)
 DB_FILE = Path(__file__).resolve().parents[2] / "devops_copilot.db"
 DB_URL = fos.environ.get("DATABASE_URL", "sqlite:///./devops.db")
+if DB_URL and DB_URL.startswith("postgres://"):
+    DB_URL = DB_URL.replace("postgres://", "postgresql://", 1)
 
 engine = create_engine(DB_URL, echo=False)
 
