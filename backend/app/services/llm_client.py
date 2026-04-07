@@ -18,7 +18,7 @@ async def stream_llm_response(prompt: str):
         "stop": ["User logs", "User:", "\n\nUser"],
     }
 
-    async with httpx.AsyncClient(timeout=60) as client:
+    async with httpx.AsyncClient(timeout=120) as client:
         async with client.stream(
             "POST",
             GROQ_API_URL,
