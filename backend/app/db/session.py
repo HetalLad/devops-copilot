@@ -3,7 +3,7 @@ from sqlmodel import SQLModel, create_engine, Session
 
 # ✅ Always create DB in backend/ (absolute path)
 DB_FILE = Path(__file__).resolve().parents[2] / "devops_copilot.db"
-DB_URL = f"sqlite:///{DB_FILE}"
+DB_URL = fos.environ.get("DATABASE_URL", "sqlite:///./devops.db")
 
 engine = create_engine(DB_URL, echo=False)
 
