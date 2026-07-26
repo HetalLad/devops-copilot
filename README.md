@@ -180,10 +180,6 @@ The application includes a health check endpoint:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
-
-[Add your license here]
-
 ## Support
 
 For issues, questions, or contributions, please open an issue on the repository.
