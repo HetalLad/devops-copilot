@@ -1,6 +1,8 @@
 # DevOps Copilot
 
-An AI-powered incident triage assistant for DevOps & SRE teams. Paste logs → identify root cause → get safe remediation steps → export updates. Runs entirely on your own infrastructure. No external AI APIs. No data leaks.
+🔗 **[Live demo](https://devops-copilot-k7jwcylb0-ladhetal25-5163s-projects.vercel.app/)** — note: backend runs on a free-tier instance that sleeps after inactivity, so the first request may take ~30-60s to wake up.
+
+An AI-powered incident triage assistant for DevOps & SRE teams. Paste logs → identify root cause → get safe remediation steps → export updates. Self-hostable end-to-end; log analysis is powered by Groq's LLM API.
 
 ## Features
 
@@ -8,8 +10,7 @@ An AI-powered incident triage assistant for DevOps & SRE teams. Paste logs → i
 **Root Cause Identification**: AI-powered root cause analysis for incidents
 **Safe Remediation Steps**: Get actionable, safe remediation recommendations
 **Export Updates**: Export findings and updates for documentation
-**Privacy-First**: Runs entirely on your own infrastructure with no external AI APIs
-**No Data Leaks**: Your sensitive logs and data never leave your environment
+**Self-Hostable**: Full source available — run your own instance with your own Groq API key
 
 ## Tech Stack
 
@@ -73,10 +74,11 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Create a `.env` file in the `backend/` directory (if needed):
+4. Create a `.env` file in the `backend/` directory:
 ```bash
-# Add your environment variables here
+GROQ_API_KEY=your_groq_api_key_here
 ```
+Get a free key at [console.groq.com](https://console.groq.com).
 
 ### Frontend Setup
 
@@ -142,7 +144,7 @@ Once the backend is running, you can access:
 
 ### Backend (`.env` in `backend/` directory)
 ```bash
-# Add backend-specific environment variables here
+GROQ_API_KEY=your_groq_api_key_here
 ```
 
 ### Frontend (`.env.local` in `frontend/` directory)
